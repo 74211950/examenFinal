@@ -1,0 +1,55 @@
+@startuml sistema
+
+class models.animal{
+    nombre:string
+    especies:string
+    habitat:string
+}
+class models.especies{
+    nombre:string
+    associatedRecinto:string
+}
+class models.recinto{
+    nombre:string
+    designedEspecies:string
+}
+class models.cuidador{
+    nombre:string
+    especialidad:string
+}
+class models.actividad{
+    nombre:string
+    cuidador:string
+}
+class models.especiesRecinto{
+    id:int
+}
+class controllers.animal{
+    resource()
+}
+class controllers.especies{
+    resource()
+}
+class controllers.recinto{
+    resource()
+}
+class controllers.cuidador{
+    resource()
+}
+class controllers.actividad{
+    resource()
+}
+class controllers.especiesRecinto{
+    resource()
+}
+
+models.animal"1"--"1"models.especies
+models.especies"1"--"*"models.animal
+models.recinto"1"--"*"models.animal
+models.cuidador"1"--"*"models.animal
+models.actividad"1"--"*"models.animal
+models.cuidador"1"--"1"models.animal
+models.cuidador"1"--"*"models.especies
+models.especies"*"--"1"models.especiesRecinto
+models.recinto"*"--"1"models.especiesRecinto
+@enduml
